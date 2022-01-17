@@ -1,0 +1,8 @@
+{
+  "/getAllEmergencies/*": {
+    "target": "https://code-challenge.patronus-group.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

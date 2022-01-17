@@ -1,0 +1,27 @@
+<p-table
+  [value]="emergencies"
+  [scrollable]="true"
+  scrollHeight="400px"
+  responsiveLayout="scroll"
+  sortField="user.firstName"
+  class="emergency-table"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Emergency ID</th>
+      <th>Emergency Date</th>
+      <th>Device</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-emergency>
+    <tr>
+      <td>{{ formatEmergencyId(emergency.emergencyId) }}</td>
+      <td>{{ formatEmergencyDate(emergency.requestTime) }}</td>
+      <td>{{ emergency.device.serialNumber }}</td>
+      <td>{{ emergency.user.firstName }}</td>
+      <td>{{ emergency.user.lastName }}</td>
+    </tr>
+  </ng-template>
+</p-table>
