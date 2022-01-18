@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { RawData } from 'src/models/rawdata.interface';
 
 import { Emergency } from '../models/emergency.interface';
 
@@ -11,42 +12,20 @@ export class EmergencyService {
   constructor(private httpClient: HttpClient) {}
 
   getEmergencies(): Observable<Emergency[]> {
-    return this.httpClient.get<{ content: any[] }>('/getAllEmergencies').pipe(
-      map((data: { content: any[] }) => data.content),
-      map((data: any[]) =>
-        data.map((d) => ({
-          emergencyId: d.emergency.emergencyId,
-          requestTime: d.emergency.requestTime,
-          device: d.device,
-          user: d.holder,
-        }))
-      )
-    );
-    // return new Observable((subscriber) => {
-    //   subscriber.next([
-    //     {
-    //       id: '1',
-    //       date: new Date(),
-    //       device: {
-    //         serialNumber: '123',
-    //       },
-    //       user: {
-    //         firstName: 'Johnny',
-    //         lastName: 'Cage',
-    //       },
-    //     } as Emergency,
-    //     {
-    //       id: '2',
-    //       date: new Date(),
-    //       device: {
-    //         serialNumber: '456',
-    //       },
-    //       user: {
-    //         firstName: 'Maria',
-    //         lastName: 'Cage',
-    //       },
-    //     } as Emergency,
-    //   ]);
-    // });
+    return this.httpClient
+      .get<{ content: RawData[] }>('/getAllEmergencies')
+      .pipe(
+        map((data: { content: RawData[] }) => data.content),
+        map((data: RawData[]) => data.map(this.mapDataToEmergency))
+      );
+  }
+
+  private mapDataToEmergency(data: RawData): Emergency {
+    return {
+      emergencyId: data.emergency.emergencyId,
+      requestTime: data.emergency.requestTime,
+      device: data.device,
+      user: data.holder,
+    };
   }
 }

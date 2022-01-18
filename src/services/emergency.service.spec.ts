@@ -3,6 +3,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+
 import { Emergency } from 'src/models/emergency.interface';
 import { EmergencyService } from './emergency.service';
 

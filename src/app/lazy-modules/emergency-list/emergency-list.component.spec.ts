@@ -3,9 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of, throwError } from 'rxjs';
-import { EmergencyService } from 'src/services/emergency.service';
 
+import { of, throwError } from 'rxjs';
+
+import { EmergencyService } from 'src/services/emergency.service';
 import { EmergencyListComponent } from './emergency-list.component';
 
 class MockEmergencyService {
