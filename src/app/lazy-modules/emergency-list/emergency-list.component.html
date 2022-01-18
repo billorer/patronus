@@ -1,6 +1,8 @@
 <p-table
   [value]="emergencies"
   [scrollable]="true"
+  [paginator]="true"
+  [rows]="10"
   scrollHeight="400px"
   responsiveLayout="scroll"
   sortField="user.firstName"
