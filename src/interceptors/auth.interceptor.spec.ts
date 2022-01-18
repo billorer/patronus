@@ -30,9 +30,10 @@ describe('AuthInterceptor', () => {
   it(
     'should add bearer token',
     waitForAsync(() => {
-      httpClient.get('/test').subscribe();
+      const testUrl = '/test';
+      httpClient.get(testUrl).subscribe();
 
-      const request = httpController.expectOne('/test');
+      const request = httpController.expectOne(testUrl);
       expect(request.request.headers.get('Authorization')).toEqual(
         `Bearer ${SESSION_TOKEN}`
       );
